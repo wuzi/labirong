@@ -8,7 +8,7 @@
 # install dependencies
 npm install
 
-# serve at localhost:7777
+# serve at localhost:8080
 npm start
 
 ```
