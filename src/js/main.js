@@ -13,7 +13,7 @@ socket.on('removePlayer', function (player) {
 socket.on('sync', function (players) {
 	game.players.forEach(player => {
         players.forEach(serverPlayer => {
-            if (player.name == serverPlayer.name) {
+            if (player.name == serverPlayer.name && player.isLocal == false) {
                 player.x = serverPlayer.x;
                 player.y = serverPlayer.y;
             }
