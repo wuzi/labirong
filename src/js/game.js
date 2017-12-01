@@ -16,8 +16,10 @@ Game.prototype = {
 
     update: function () {
         this.clear();
-        this.players.forEach(p => {
+        this.players.forEach(p => {            
             p.update();
+            if (p.isLocal)
+                this.socket.emit('sync', {name: p.name, x: p.x, y: p.y});
         });
     },
 

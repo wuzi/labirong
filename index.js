@@ -37,6 +37,8 @@ io.on('connection', function(client) {
 		console.log(`${player.name} joined the game`)
 		
 		client.emit('addPlayer', {name: player.name, isLocal: true, x: 40, y: 40});
+		game.players.forEach(p => { client.emit('addPlayer', {name: p.name, isLocal: false, x: p.x, y: p.y}); });
+		
 		client.broadcast.emit('addPlayer', {name: player.name, isLocal: false, x: 40, y: 40});
 
 		game.addPlayer({name: player.name, x: 40, y: 40});
@@ -45,6 +47,16 @@ io.on('connection', function(client) {
 	client.on('leave', function(player) {
 		console.log(`${player.name} has left the game`);
 		game.removePlayer(player.name);
+	});
+
+	client.on('sync', function(player) {
+		game.players.forEach(p => {
+			if (p.name == player.name) {
+				p.x = player.x;
+				p.y = player.y;
+			}
+		});
+		client.broadcast.emit('sync', game.players);
 	});
 });
 
