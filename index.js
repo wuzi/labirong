@@ -22,7 +22,7 @@ Game.prototype = {
 	},
 
 	removePlayer: function(playerName) {
-		this.players = this.players.filter(player => this.players.name != playerName);
+		this.players = this.players.filter(function(p) { return p.name != playerName });
 	}
 }
 
@@ -47,6 +47,7 @@ io.on('connection', function(client) {
 	client.on('leave', function(player) {
 		console.log(`${player.name} has left the game`);
 		game.removePlayer(player.name);
+		client.broadcast.emit('removePlayer', {name: player.name});		
 	});
 
 	client.on('sync', function(player) {

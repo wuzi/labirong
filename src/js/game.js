@@ -30,5 +30,9 @@ Game.prototype = {
     addPlayer: function(name, x, y, color, isLocal) {
         var player = new Player(name, x, y, color, 40, 40, isLocal, this.context);
         this.players.push(player);        
+    },
+
+    removePlayer: function(playerName) {
+        this.players = this.players.filter(function(p) { return p.name != playerName });
     }
 }
