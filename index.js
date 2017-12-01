@@ -1,6 +1,7 @@
+const config = require('./config');
 const express = require('express');
 const app = express();
-const server = require('http').createServer(app).listen(7777);
+const server = require('http').createServer(app).listen(config.port);
 const io = require('socket.io').listen(server);
 
 app.get('/', function (req, res) {
