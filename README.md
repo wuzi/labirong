@@ -12,3 +12,7 @@ npm install
 npm start
 
 ```
+
+# Live demo
+
+Check it [here](http://labirong.herokuapp.com/)!
