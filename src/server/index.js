@@ -1,9 +1,10 @@
-var path = require('path');
-const config = require('./config');
+const path = require('path');
 const express = require('express');
+const config = require('./config');
 const app = express();
 const server = require('http').createServer(app).listen(config.port);
 const io = require('socket.io').listen(server);
+const maploader = require('./maploader');
 
 app.get('/', function (req, res) {
 	res.sendFile(path.resolve(__dirname + '/../client/index.html'));
@@ -15,6 +16,7 @@ console.log(`Server started at http://localhost:${server.address().port}`);
 //-----------------------------------------------------------------------------
 
 function Game(params) {
+	this.tiles = [];
 	this.players = [];
 }
 
@@ -25,10 +27,11 @@ Game.prototype = {
 
 	removePlayer: function(id) {
 		this.players = this.players.filter(function(p) { return p.id != id });
-	}
+	},
 }
 
 var game = new Game();
+game.tiles = maploader.load("default.txt"); // Load default map
 
 //-----------------------------------------------------------------------------
 
@@ -45,6 +48,8 @@ io.on('connection', function(client) {
 		client.broadcast.emit('addPlayer', {id: client.id, name: player.name, isLocal: false, x: 40, y: 40});
 
 		game.addPlayer({id: client.id, name: player.name, x: 40, y: 40});
+
+		client.emit('updateMap', game.tiles);		
 	});
 
 	client.on('disconnect', function() {

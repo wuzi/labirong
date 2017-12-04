@@ -30,7 +30,7 @@ Player.prototype = {
         this.$context.fillStyle = this.color;
         this.$context.font = "15px Arial";
         this.$context.textAlign = "center";
-        this.$context.strokeText(this.name, this.x + 18, this.y - 1);
+        this.$context.strokeText(this.name, this.x + 13.5, this.y - 1);
         this.$context.fillRect(this.x, this.y, this.width, this.height);
     },
 
@@ -96,5 +96,20 @@ Player.prototype = {
                     break;
             }
         }
+    },
+
+    collisionWithTile: function(tile) {
+        if (this.x < tile.x + tile.width &&
+            this.x + this.width > tile.x &&
+            this.y < tile.y + tile.height &&
+            this.height + this.y > tile.y) {
+            return true;
+        }
+        return false;
+    },
+
+    reset: function() {
+        this.x = 40;
+        this.y = 40;
     }
 }

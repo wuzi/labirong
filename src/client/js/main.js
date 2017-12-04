@@ -13,6 +13,7 @@ socket.on('disconnect', function () {
 	game.players.forEach(player => {
         game.removePlayer(player.id);
     });
+    game.clearTiles();
 });
 
 socket.on('addPlayer', function (player) {
@@ -31,5 +32,11 @@ socket.on('sync', function (players) {
                 player.y = serverPlayer.y;
             }
         });
+    });
+});
+
+socket.on('updateMap', function (tiles) {
+    tiles.forEach(tile => {
+        game.addTile({x: tile.x, y: tile.y});
     });
 });
