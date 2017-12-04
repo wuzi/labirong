@@ -1,3 +1,4 @@
+var path = require('path');
 const config = require('./config');
 const express = require('express');
 const app = express();
@@ -5,9 +6,9 @@ const server = require('http').createServer(app).listen(config.port);
 const io = require('socket.io').listen(server);
 
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/src/index.html');
+	res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
-app.use(express.static(__dirname + '/src'));
+app.use(express.static(path.resolve(__dirname + '/../client')));
 
 console.log(`Server started at http://localhost:${server.address().port}`);
 
