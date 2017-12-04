@@ -23,8 +23,8 @@ Game.prototype = {
 		this.players.push(player);
 	},
 
-	removePlayer: function(playerName) {
-		this.players = this.players.filter(function(p) { return p.name != playerName });
+	removePlayer: function(id) {
+		this.players = this.players.filter(function(p) { return p.id != id });
 	}
 }
 
@@ -33,28 +33,33 @@ var game = new Game();
 //-----------------------------------------------------------------------------
 
 io.on('connection', function(client) {
+	client.emit('connection');
 	console.log('New player connected');
 
 	client.on('join', function(player) {
 		console.log(`${player.name} joined the game`)
 		
-		client.emit('addPlayer', {name: player.name, isLocal: true, x: 40, y: 40});
-		game.players.forEach(p => { client.emit('addPlayer', {name: p.name, isLocal: false, x: p.x, y: p.y}); });
+		client.emit('addPlayer', {id: client.id, name: player.name, isLocal: true, x: 40, y: 40});
+		game.players.forEach(p => {client.emit('addPlayer', {id: p.id, name: p.name, isLocal: false, x: p.x, y: p.y}); });
 		
-		client.broadcast.emit('addPlayer', {name: player.name, isLocal: false, x: 40, y: 40});
+		client.broadcast.emit('addPlayer', {id: client.id, name: player.name, isLocal: false, x: 40, y: 40});
 
-		game.addPlayer({name: player.name, x: 40, y: 40});
+		game.addPlayer({id: client.id, name: player.name, x: 40, y: 40});
 	});
 
-	client.on('leave', function(player) {
-		console.log(`${player.name} has left the game`);
-		game.removePlayer(player.name);
-		client.broadcast.emit('removePlayer', {name: player.name});		
+	client.on('disconnect', function() {
+		var player = game.players.find(x => x.id === client.id);
+		
+		if (player)
+			console.log(`${player.name} has left the game`);
+		
+		game.removePlayer(client.id);
+		client.broadcast.emit('removePlayer', {id: client.id});		
 	});
 
 	client.on('sync', function(player) {
 		game.players.forEach(p => {
-			if (p.name == player.name) {
+			if (p.id == player.id) {
 				p.x = player.x;
 				p.y = player.y;
 			}

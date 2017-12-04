@@ -1,4 +1,5 @@
-function Player(name, x, y, color, width, height, isLocal, $context) {
+function Player(id, name, x, y, color, width, height, isLocal, $context) {
+    this.id = id;
     this.name = name;
     this.x = x;
     this.y = y;

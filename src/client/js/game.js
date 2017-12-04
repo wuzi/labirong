@@ -19,7 +19,7 @@ Game.prototype = {
         this.players.forEach(p => {            
             p.update();
             if (p.isLocal)
-                this.socket.emit('sync', {name: p.name, x: p.x, y: p.y});
+                this.socket.emit('sync', {id: p.id, name: p.name, x: p.x, y: p.y});
         });
     },
 
@@ -27,12 +27,12 @@ Game.prototype = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
 
-    addPlayer: function(name, x, y, color, isLocal) {
-        var player = new Player(name, x, y, color, 40, 40, isLocal, this.context);
+    addPlayer: function(id, name, x, y, color, isLocal) {
+        var player = new Player(id, name, x, y, color, 40, 40, isLocal, this.context);
         this.players.push(player);        
     },
 
-    removePlayer: function(playerName) {
-        this.players = this.players.filter(function(p) { return p.name != playerName });
+    removePlayer: function(id) {
+        this.players = this.players.filter(function(p) { return p.id != id });
     }
 }
