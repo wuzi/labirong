@@ -1,4 +1,12 @@
 canvas {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    margin: auto;
+    display: block;
+    position: absolute;
     border:1px solid #d3d3d3;
     background-color: #f1f1f1;
 }
