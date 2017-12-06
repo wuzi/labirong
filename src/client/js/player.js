@@ -13,7 +13,8 @@ function Player(id, name, x, y, color, width, height, isLocal, $context) {
 		up: false,
 		down: false,
 		left: false,
-		right: false
+        right: false,
+        boost: false
     };
 
     if (isLocal) this.setControls();
@@ -40,15 +41,15 @@ Player.prototype = {
             
         if (this.moving.up)
             speedY = -1;
-        if (this.moving.down)
+        else if (this.moving.down)
             speedY = 1;
         if (this.moving.left)
             speedX = -1;
-        if (this.moving.right)
+        else if (this.moving.right)
             speedX = 1;
         
-        this.x += speedX;
-        this.y += speedY;
+        this.x += (this.moving.boost) ? speedX * 3 : speedX;
+        this.y += (this.moving.boost) ? speedY * 3 : speedY;
     },
 
     setControls: function () {
@@ -72,6 +73,9 @@ Player.prototype = {
                 case 68:
                     t.moving.right = true;
                     break;
+                case 16:
+                    t.moving.boost = true;
+                    break;
             }
         }
 
@@ -93,6 +97,9 @@ Player.prototype = {
                 case 39:
                 case 68:
                     t.moving.right = false;
+                    break;
+                case 16:
+                    t.moving.boost = false;
                     break;
             }
         }
