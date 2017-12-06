@@ -117,7 +117,7 @@ Player.prototype = {
     },
 
     reset: function() {
-        this.x = 10;
-        this.y = 40;
+        this.x = 18;
+        this.y = 10;
     }
 }
