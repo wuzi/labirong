@@ -22,7 +22,7 @@ Game.prototype = {
             if (p.isLocal)
             {
                 this.tiles.forEach(t => {
-                    if (p.collisionWithTile(t) && t.type == 48) {
+                    if (p.collisionWithTile(t) && t.type != 0) {
                         p.reset();
                     }
                     t.draw();

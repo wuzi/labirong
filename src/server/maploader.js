@@ -11,7 +11,7 @@ var load = function(file) {
 
         for(var j = 0; j < line.length; j++) {
             if (line.charCodeAt(j) == 13) continue;
-            tiles.push({x: j * 16, y: i * 16, type: line.charCodeAt(j)});
+            tiles.push({x: j * 16, y: i * 16, type: parseInt(line[j])});
         }                
     }
 

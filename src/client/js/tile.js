@@ -1,8 +1,8 @@
-var grass = new Image();
-grass.src = '/image/grass.jpeg';
+var stones = new Image();
+stones.src = '/image/stones.png';
 
-var block = new Image();
-block.src = '/image/block.jpeg';
+var grass = new Image();
+grass.src = '/image/grass.png';
 
 function Tile(x, y, type, width, height, $context) {
     this.x = x;
@@ -17,11 +17,11 @@ Tile.prototype = {
 
     draw: function () {        
         switch (this.type) {
-            case 48:
-                this.$context.drawImage(block, this.x, this.y, this.width, this.height);
+            case 1:
+                this.$context.drawImage(grass, this.x, this.y, this.width, this.height);
                 break;
             default:
-                this.$context.drawImage(grass, this.x, this.y, this.width, this.height);
+                this.$context.drawImage(stones, this.x, this.y, this.width, this.height);
                 break;
         }        
     }
