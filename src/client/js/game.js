@@ -15,27 +15,22 @@ function Game(width, height, socket) {
 
 Game.prototype = {
 
-    update: function () {
-        var player = null;
-        
+    update: function () {        
         this.clear();        
         
         this.players.forEach(p => {
-            p.update();
-            
             if (p.isLocal)
             {
-                player = p;
+                this.tiles.forEach(t => {
+                    if (p.collisionWithTile(t) && t.type == 48) {
+                        p.reset();
+                    }
+                    t.draw();
+                });
                 this.socket.emit('sync', {id: p.id, name: p.name, x: p.x, y: p.y});
             }
-        });
-
-        this.tiles.forEach(t => {
-            if (player.collisionWithTile(t)) {
-                player.reset();
-            }
-            t.draw();
-        });
+            p.update();
+        });        
     },
 
     clear: function () {
@@ -52,7 +47,7 @@ Game.prototype = {
     },
 
     addTile: function(tile) {
-        var tile = new Tile(tile.x, tile.y, 16, 16, this.context);
+        var tile = new Tile(tile.x, tile.y, tile.type, 16, 16, this.context);
         this.tiles.push(tile);
     },
 

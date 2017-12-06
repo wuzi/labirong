@@ -43,7 +43,7 @@ socket.on('updateMap', function (tiles) {
     if (game == null) return;
 
     tiles.forEach(tile => {
-        game.addTile({x: tile.x, y: tile.y});
+        game.addTile({x: tile.x, y: tile.y, type: tile.type});
     });
 });
 

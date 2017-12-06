@@ -1,6 +1,7 @@
-function Tile(x, y, width, height, $context) {
+function Tile(x, y, type, width, height, $context) {
     this.x = x;
     this.y = y;
+    this.type = type;
     this.width = width;
     this.height = height;
     this.$context = $context;
@@ -9,7 +10,13 @@ function Tile(x, y, width, height, $context) {
 Tile.prototype = {
 
     draw: function () {
-        this.$context.fillStyle = "green";
+        switch (this.type) {
+            case 49:
+                this.$context.fillStyle = "green";
+                break;
+            default:
+                this.$context.fillStyle = "purple";
+        }
         this.$context.fillRect(this.x, this.y, this.width, this.height);
     }
 }

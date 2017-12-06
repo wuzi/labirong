@@ -10,10 +10,8 @@ var load = function(file) {
         var line = lines[i];
 
         for(var j = 0; j < line.length; j++) {
-            if (line.charCodeAt(j) != 49)
-                continue;
-            
-            tiles.push({x: ((j + 1) * 16) + 16, y: (i + 1) * 16});
+            if (line.charCodeAt(j) == 13) continue;
+            tiles.push({x: j * 16, y: i * 16, type: line.charCodeAt(j)});
         }                
     }
 
