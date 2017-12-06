@@ -1,15 +1,13 @@
+var game = null;
 var socket = io.connect('/');
-var game = new Game(1000, 540, socket);
 
 socket.on('connection', function (player) {
-	var username = null;    
-    while (username == null || username == "")
-        username = prompt("Please enter your name:");
-
-    socket.emit('join', {name: username});
+	// TODO: Show login-form and stop connecting animation
 });
 
 socket.on('disconnect', function () {
+    if (game == null) return;
+
 	game.players.forEach(player => {
         game.removePlayer(player.id);
     });
@@ -17,14 +15,20 @@ socket.on('disconnect', function () {
 });
 
 socket.on('addPlayer', function (player) {
-	game.addPlayer(player.id, player.name, player.x, player.y, "blue", player.isLocal);
+    if (game == null) return;
+    
+	game.addPlayer(player.id, player.name, player.x, player.y, player.color, player.isLocal);
 });
 
 socket.on('removePlayer', function (player) {
+    if (game == null) return;
+
 	game.removePlayer(player.id);
 });
 
 socket.on('sync', function (players) {
+    if (game == null) return;
+
 	game.players.forEach(player => {
         players.forEach(serverPlayer => {
             if (player.id == serverPlayer.id && player.isLocal == false) {
@@ -36,7 +40,15 @@ socket.on('sync', function (players) {
 });
 
 socket.on('updateMap', function (tiles) {
+    if (game == null) return;
+
     tiles.forEach(tile => {
         game.addTile({x: tile.x, y: tile.y});
     });
 });
+
+var joinGame = function (name, color) {
+    game = new Game(1000, 540, socket);
+    document.getElementById('mainmenu').innerHTML = "";
+    socket.emit('join', {name: name, color: color});
+}

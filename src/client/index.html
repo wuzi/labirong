@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Labirong - The Game</title>
-    <link rel="stylesheet" href="css/styles.css"/>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Labirong - The Game</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <div class="login-page" id="mainmenu">
+    <div class="form">
+      <h2>Welcome to labirong!</h2>
+      <div class="login-form">
+        <input type="text" placeholder="username" id="name" />
+        <select id="color">
+          <option value="" disabled selected>Select your color</option>
+          <option value="blue">Blue</option>
+          <option value="Orange">Orange</option>
+          <option value="Red">Red</option>
+        </select>
+        <button id="playBtn">play</button>
+        <p class="message" id="error"></p>
+      </div>
+    </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
   <script src="js/player.js"></script>
   <script src="js/tile.js"></script>
   <script src="js/game.js"></script>
   <script src="js/main.js"></script>
-  </body>
+  <script src="js/mainmenu.js"></script>
+</body>
+
 </html>
