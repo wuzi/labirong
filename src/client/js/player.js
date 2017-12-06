@@ -28,10 +28,11 @@ Player.prototype = {
     },
 
     draw: function () {
-        this.$context.fillStyle = this.color;
-        this.$context.font = "15px Arial";
+        this.$context.fillStyle = "black";
+        this.$context.font = "10px Arial";
         this.$context.textAlign = "center";
-        this.$context.strokeText(this.name, this.x + 13.5, this.y - 1);
+        this.$context.fillText(this.name, this.x + 9, this.y - 1);
+        this.$context.fillStyle = this.color;        
         this.$context.fillRect(this.x, this.y, this.width, this.height);
     },
 
@@ -116,7 +117,7 @@ Player.prototype = {
     },
 
     reset: function() {
-        this.x = 40;
+        this.x = 10;
         this.y = 40;
     }
 }

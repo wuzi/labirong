@@ -43,7 +43,7 @@ Game.prototype = {
     },
 
     addPlayer: function(id, name, x, y, color, isLocal) {
-        var player = new Player(id, name, x, y, color, 30, 30, isLocal, this.context);
+        var player = new Player(id, name, x, y, color, 12, 12, isLocal, this.context);
         this.players.push(player);
     },
 
@@ -52,7 +52,7 @@ Game.prototype = {
     },
 
     addTile: function(tile) {
-        var tile = new Tile(tile.x, tile.y, 40, 40, this.context);
+        var tile = new Tile(tile.x, tile.y, 16, 16, this.context);
         this.tiles.push(tile);
     },
 

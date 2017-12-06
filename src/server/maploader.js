@@ -13,7 +13,7 @@ var load = function(file) {
             if (line.charCodeAt(j) != 49)
                 continue;
             
-            tiles.push({x: ((j + 1) * 40) + 100, y: (i + 1) * 40});
+            tiles.push({x: ((j + 1) * 16) + 16, y: (i + 1) * 16});
         }                
     }
 
