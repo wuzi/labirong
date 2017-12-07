@@ -4,12 +4,15 @@ canvas {
     right: 0;
     bottom: 0;
     padding: 0;
+    width: 90%;
+    height: 90%;
     margin: auto;
     display: block;
     position: absolute;
     border: 1px solid #d3d3d3;
     background-color: #f1f1f1;
 }
+
 /* Main menu */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);

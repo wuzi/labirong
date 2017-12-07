@@ -48,7 +48,7 @@ socket.on('updateMap', function (tiles) {
 });
 
 var joinGame = function (name, color) {
-    game = new Game(1000, 540, socket);
+    game = new Game(400, 240, socket);
     document.getElementById('mainmenu').innerHTML = "";
     socket.emit('join', {name: name, color: color});
 }

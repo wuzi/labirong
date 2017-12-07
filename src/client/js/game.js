@@ -15,12 +15,14 @@ function Game(width, height, socket) {
 
 Game.prototype = {
 
-    update: function () {        
-        this.clear();        
-        
+    update: function () {
+        this.clear();
         this.players.forEach(p => {
-            if (p.isLocal)
-            {
+            if (p.isLocal) {
+                var camX = (-p.x + this.canvas.width/2).clamp(-600, 400 - this.canvas.width);
+                var camY = (-p.y + this.canvas.height/2).clamp(-300, 240 - this.canvas.height);
+                this.context.translate( camX, camY );
+
                 this.tiles.forEach(t => {
                     if (p.collisionWithTile(t) && t.type != 0) {
                         p.reset();
@@ -34,6 +36,7 @@ Game.prototype = {
     },
 
     clear: function () {
+        this.context.setTransform(1,0,0,1,0,0);
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
 

@@ -18,10 +18,10 @@ Tile.prototype = {
     draw: function () {        
         switch (this.type) {
             case 1:
-                this.$context.drawImage(grass, this.x, this.y, this.width, this.height);
+                this.$context.drawImage(stones, this.x, this.y, this.width, this.height);
                 break;
             default:
-                this.$context.drawImage(stones, this.x, this.y, this.width, this.height);
+                this.$context.drawImage(grass, this.x, this.y, this.width, this.height);
                 break;
         }        
     }
