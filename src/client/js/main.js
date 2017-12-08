@@ -1,6 +1,17 @@
 var game = null;
 var socket = io.connect('/');
 
+// Assets
+var ASSET_MANAGER = new AssetManager();
+
+ASSET_MANAGER.queueDownload('image/stones.png');
+ASSET_MANAGER.queueDownload('image/grass.png');
+
+ASSET_MANAGER.downloadAll(function() {
+    document.getElementById('playBtn').style.display = 'block';
+    document.getElementById('myProgress').style.display = 'none';
+});
+
 socket.on('connection', function (player) {
 	// TODO: Show login-form and stop connecting animation
 });
