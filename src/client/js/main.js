@@ -60,6 +60,9 @@ socket.on('updateMap', function (tiles) {
 
 var joinGame = function (name, color) {
     game = new Game(400, 240, socket);
-    document.getElementById('mainmenu').innerHTML = "";
+    
+    var mainMenu = document.getElementById('mainmenu');
+    mainMenu.parentNode.removeChild(mainMenu);
+    
     socket.emit('join', {name: name, color: color});
 }
