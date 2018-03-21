@@ -9,6 +9,16 @@ function Player(id, name, x, y, color, width, height, isLocal, $context) {
     this.isLocal = isLocal;
     this.$context = $context;
 
+    this.hframeIndex = 0;
+    this.hframeOffset = 46;
+    this.htotalFrames = 3;
+    
+    this.vframeIndex = 0;
+    this.vframeOffset = 36;
+    
+    this.tickCount = 0;
+    this.ticksPerFrame = 10;
+
     this.moving = {
 		up: false,
 		down: false,
@@ -23,6 +33,20 @@ function Player(id, name, x, y, color, width, height, isLocal, $context) {
 Player.prototype = {
 
     update: function () {
+        // Animate character sprite if the character is moving
+        if (this.moving.up || this.moving.down || this.moving.left || this.moving.right) {
+            this.tickCount++;
+            if (this.tickCount > this.ticksPerFrame) {
+                this.hframeIndex++;
+                if (this.hframeIndex >= this.htotalFrames)
+                    this.hframeIndex = 0;
+                this.tickCount = 0;
+            }
+
+            if (this.moving.boost) this.ticksPerFrame = 5;
+            else this.ticksPerFrame = 10;
+        }
+
         this.draw();
         if (this.isLocal) this.move();
     },
@@ -32,22 +56,29 @@ Player.prototype = {
         this.$context.font = "10px Arial";
         this.$context.textAlign = "center";
         this.$context.fillText(this.name, this.x + 6, this.y - 1);
-        this.$context.fillStyle = this.color;        
-        this.$context.fillRect(this.x, this.y, this.width, this.height);
+        this.$context.drawImage(ASSET_MANAGER.getAsset('image/character.png'), this.hframeIndex * this.hframeOffset, this.vframeIndex * this.vframeOffset, 37, 37, this.x, this.y, this.width, this.height);
     },
 
     move: function () {
         var speedX = 0;
         var speedY = 0;
             
-        if (this.moving.up)
+        if (this.moving.up) {
             speedY = -1;
-        else if (this.moving.down)
+            this.vframeIndex = 2;
+        }
+        else if (this.moving.down) {
             speedY = 1;
-        if (this.moving.left)
+            this.vframeIndex = 0;
+        }
+        if (this.moving.left) {
             speedX = -1;
-        else if (this.moving.right)
+            this.vframeIndex = 3;
+        }
+        else if (this.moving.right) {
             speedX = 1;
+            this.vframeIndex = 1;
+        }
         
         this.x += (this.moving.boost) ? speedX * 3 : speedX;
         this.y += (this.moving.boost) ? speedY * 3 : speedY;
