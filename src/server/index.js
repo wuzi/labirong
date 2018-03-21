@@ -42,12 +42,12 @@ io.on('connection', function(client) {
 	client.on('join', function(player) {
 		console.log(`${player.name} joined the game`)
 		
-		client.emit('addPlayer', {id: client.id, name: player.name, color: player.color, isLocal: true, x: 18, y: 10});
+		client.emit('addPlayer', {id: client.id, name: player.name, color: player.color, isLocal: true, x: 18, y: 15});
 		game.players.forEach(p => {client.emit('addPlayer', {id: p.id, name: p.name, color: p.color, isLocal: false, x: p.x, y: p.y}); });
 		
-		client.broadcast.emit('addPlayer', {id: client.id, name: player.name, color: player.color, isLocal: false, x: 18, y: 10});
+		client.broadcast.emit('addPlayer', {id: client.id, name: player.name, color: player.color, isLocal: false, x: 18, y: 15});
 
-		game.addPlayer({id: client.id, name: player.name, color: player.color, x: 18, y: 10});
+		game.addPlayer({id: client.id, name: player.name, color: player.color, x: 18, y: 15});
 
 		client.emit('updateMap', game.tiles);		
 	});

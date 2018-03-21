@@ -52,10 +52,13 @@ Player.prototype = {
     },
 
     draw: function () {
-        this.$context.fillStyle = "black";
-        this.$context.font = "10px Arial";
         this.$context.textAlign = "center";
-        this.$context.fillText(this.name, this.x + 6, this.y - 1);
+        this.$context.font = "10px Sans-serif"
+        this.$context.strokeStyle = 'black';
+        this.$context.lineWidth = 2.5;
+        this.$context.strokeText(this.name, this.x + 6, this.y - 2);
+        this.$context.fillStyle = 'white';
+        this.$context.fillText(this.name, this.x + 6, this.y - 2);
         this.$context.drawImage(ASSET_MANAGER.getAsset(`image/character_${this.color}.png`), this.hframeIndex * this.hframeOffset, this.vframeIndex * this.vframeOffset, 37, 37, this.x, this.y, this.width, this.height);
     },
 
@@ -149,6 +152,6 @@ Player.prototype = {
 
     reset: function() {
         this.x = 18;
-        this.y = 10;
+        this.y = 15;
     }
 }
