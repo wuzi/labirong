@@ -51,13 +51,19 @@ function update() {
         attemptsLeft -= 1;
         if (attemptsLeft < 0) {
             // make exit
+            var possibleExits = [];
             for (var x = 0; x < SIZE_X; x++) {
                 // find passage
                 if (getBlock(x, SIZE_Y - 2) == EMPTY) {
-                    setBlock(x, SIZE_Y - 1, EMPTY);
-                    break;
+                    possibleExits.push(x);
                 }
             }
+
+            // select a random exit
+            var x = possibleExits[Math.floor(Math.random()*possibleExits.length)];
+            setBlock(x, SIZE_Y - 1, EMPTY);
+            
+            // end loop
             generating = false;
         }
     }
