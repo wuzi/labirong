@@ -51,6 +51,12 @@ socket.on('sync', function (players) {
             if (player.id == serverPlayer.id && player.isLocal == false) {
                 player.x = serverPlayer.x;
                 player.y = serverPlayer.y;
+
+                player.hframeIndex = serverPlayer.hframeIndex;
+				player.vframeIndex = serverPlayer.vframeIndex;
+				
+				player.hframeOffset = serverPlayer.hframeOffset;
+				player.vframeOffset = serverPlayer.vframeOffset;
             }
         });
     });

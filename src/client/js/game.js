@@ -29,7 +29,7 @@ Game.prototype = {
                     }
                     t.draw();
                 });
-                this.socket.emit('sync', {id: p.id, name: p.name, x: p.x, y: p.y});
+                this.socket.emit('sync', p);
             }
             p.update();
         });        

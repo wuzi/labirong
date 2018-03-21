@@ -69,6 +69,12 @@ io.on('connection', function (client) {
 			if (p.id == player.id) {
 				p.x = player.x;
 				p.y = player.y;
+				
+				p.hframeIndex = player.hframeIndex;
+				p.vframeIndex = player.vframeIndex;
+				
+				p.hframeOffset = player.hframeOffset;
+				p.vframeOffset = player.vframeOffset;
 			}
 		});
 		client.broadcast.emit('sync', game.players);
