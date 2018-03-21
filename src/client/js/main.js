@@ -65,9 +65,7 @@ socket.on('updateMap', function (grid) {
 
     for (var y = 0; y < SIZE_Y; y++) {
         for (var x = 0; x < SIZE_X; x++) {
-            if (grid[x + y * SIZE_X] == 1) {
-                game.addTile({ x: x * 16, y: y * 16, type: 1 });
-            }
+            game.addTile({ x: x * 16, y: y * 16, type: grid[x + y * SIZE_X] });
         }
     }
 });
