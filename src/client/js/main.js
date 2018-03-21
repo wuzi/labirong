@@ -13,19 +13,19 @@ ASSET_MANAGER.queueDownload('image/character_blue.png');
 ASSET_MANAGER.queueDownload('image/character_green.png');
 ASSET_MANAGER.queueDownload('image/character_yellow.png');
 
-ASSET_MANAGER.downloadAll(function() {
+ASSET_MANAGER.downloadAll(function () {
     document.getElementById('playBtn').style.display = 'block';
     document.getElementById('myProgress').style.display = 'none';
 });
 
 socket.on('connection', function (player) {
-	// TODO: Show login-form and stop connecting animation
+    // TODO: Show login-form and stop connecting animation
 });
 
 socket.on('disconnect', function () {
     if (game == null) return;
 
-	game.players.forEach(player => {
+    game.players.forEach(player => {
         game.removePlayer(player.id);
     });
     game.clearTiles();
@@ -33,20 +33,20 @@ socket.on('disconnect', function () {
 
 socket.on('addPlayer', function (player) {
     if (game == null) return;
-    
-	game.addPlayer(player.id, player.name, player.x, player.y, player.color, player.isLocal);
+
+    game.addPlayer(player.id, player.name, player.x, player.y, player.color, player.isLocal);
 });
 
 socket.on('removePlayer', function (player) {
     if (game == null) return;
 
-	game.removePlayer(player.id);
+    game.removePlayer(player.id);
 });
 
 socket.on('sync', function (players) {
     if (game == null) return;
 
-	game.players.forEach(player => {
+    game.players.forEach(player => {
         players.forEach(serverPlayer => {
             if (player.id == serverPlayer.id && player.isLocal == false) {
                 player.x = serverPlayer.x;
@@ -56,19 +56,27 @@ socket.on('sync', function (players) {
     });
 });
 
-socket.on('updateMap', function (tiles) {
+socket.on('updateMap', function (grid) {
     if (game == null) return;
 
-    tiles.forEach(tile => {
-        game.addTile({x: tile.x, y: tile.y, type: tile.type});
-    });
+    // These settings should come from the server
+    var SIZE_X = 64;
+    var SIZE_Y = 34;
+
+    for (var y = 0; y < SIZE_Y; y++) {
+        for (var x = 0; x < SIZE_X; x++) {
+            if (grid[x + y * SIZE_X] == 1) {
+                game.addTile({ x: x * 16, y: y * 16, type: 1 });
+            }
+        }
+    }
 });
 
 var joinGame = function (name, color) {
     game = new Game(400, 240, socket);
-    
+
     var mainMenu = document.getElementById('mainmenu');
     mainMenu.parentNode.removeChild(mainMenu);
-    
-    socket.emit('join', {name: name, color: color});
+
+    socket.emit('join', { name: name, color: color });
 }
