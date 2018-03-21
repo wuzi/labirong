@@ -9,8 +9,8 @@ canvas {
     margin: auto;
     display: block;
     position: absolute;
-    border: 1px solid #d3d3d3;
-    background-color: #f1f1f1;
+    border: 1px solid #68726b;
+    background-color: #38463b;
 }
 
 /* Main menu */
@@ -85,13 +85,13 @@ canvas {
     background: rgb(54, 18, 106);
 }
 body {
-    background: #52a4b8;
+    background: #3a453d;
     /* fallback for old browsers */
     
-    background: -webkit-linear-gradient(right, #52a4b8, #6fafc2);
-    background: -moz-linear-gradient(right, #52a4b8, #6fafc2);
-    background: -o-linear-gradient(right, #52a4b8, #6fafc2);
-    background: linear-gradient(to left, #52a4b8, #6fafc2);
+    background: -webkit-linear-gradient(right, #3a453d, #38463b);
+    background: -moz-linear-gradient(right, #3a453d, #38463b);
+    background: -o-linear-gradient(right, #3a453d, #38463b);
+    background: linear-gradient(to left, #3a453d, #38463b);
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
