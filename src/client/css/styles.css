@@ -105,7 +105,7 @@ body {
 #myBar {
     width: 10%;
     height: 30px;
-    background-color: #52a4b8;
+    background-color: rgb(40, 12, 73);
     text-align: center;
     line-height: 30px;
     color: white;
