@@ -6,7 +6,12 @@ var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload('image/stones.png');
 ASSET_MANAGER.queueDownload('image/grass.png');
-ASSET_MANAGER.queueDownload('image/character.png'); // Thanks to Curt - cjc83486 for this placeholder sprite
+
+// Thanks to Curt - cjc83486 for this placeholder sprite
+ASSET_MANAGER.queueDownload('image/character_red.png');
+ASSET_MANAGER.queueDownload('image/character_blue.png');
+ASSET_MANAGER.queueDownload('image/character_green.png');
+ASSET_MANAGER.queueDownload('image/character_yellow.png');
 
 ASSET_MANAGER.downloadAll(function() {
     document.getElementById('playBtn').style.display = 'block';

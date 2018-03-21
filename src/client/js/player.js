@@ -56,7 +56,7 @@ Player.prototype = {
         this.$context.font = "10px Arial";
         this.$context.textAlign = "center";
         this.$context.fillText(this.name, this.x + 6, this.y - 1);
-        this.$context.drawImage(ASSET_MANAGER.getAsset('image/character.png'), this.hframeIndex * this.hframeOffset, this.vframeIndex * this.vframeOffset, 37, 37, this.x, this.y, this.width, this.height);
+        this.$context.drawImage(ASSET_MANAGER.getAsset(`image/character_${this.color}.png`), this.hframeIndex * this.hframeOffset, this.vframeIndex * this.vframeOffset, 37, 37, this.x, this.y, this.width, this.height);
     },
 
     move: function () {
