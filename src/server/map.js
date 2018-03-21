@@ -3,7 +3,7 @@
 var DICE = 0.5;
 var attemptsLeft = 5;
 
-var SIZE_X = 64;
+var SIZE_X = 63;
 var SIZE_Y = 34;
 
 var SOLID = 1;
