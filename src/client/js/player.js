@@ -142,8 +142,8 @@ Player.prototype = {
 
     collisionWithTile: function(tile) {
         if (this.x < tile.x + tile.width &&
-            this.x + this.width > tile.x &&
-            this.y < tile.y + tile.height &&
+            this.x + this.width - 2 > tile.x &&
+            this.y < tile.y + tile.height - 10 &&
             this.height + this.y > tile.y) {
             return true;
         }
