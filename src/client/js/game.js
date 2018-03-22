@@ -19,8 +19,8 @@ Game.prototype = {
         this.clear();
         this.players.forEach(p => {
             if (p.isLocal) {
-                var camX = (-p.x + this.canvas.width/2).clamp(-600, 400 - this.canvas.width);
-                var camY = (-p.y + this.canvas.height/2).clamp(-300, 240 - this.canvas.height);
+                var camX = (-p.x + this.canvas.width/2).clamp(-624, 400 - this.canvas.width);
+                var camY = (-p.y + this.canvas.height/2).clamp(-784, 240 - this.canvas.height);
                 this.context.translate( camX, camY );
 
                 this.tiles.forEach(t => {

@@ -3,8 +3,8 @@
 var DICE = 0.5;
 var attemptsLeft = 5;
 
-var SIZE_X = 63;
-var SIZE_Y = 34;
+var SIZE_X = 64;
+var SIZE_Y = 64;
 
 var SOLID = 1;
 var EMPTY = 0;
@@ -25,7 +25,7 @@ var generate = function () {
     do { update(); }
     while (generating);
 
-    grid[parseInt(SIZE_X / 2)] = SOLID;
+    //grid[parseInt(SIZE_X / 2)] = SOLID;
 
     return grid;
 }

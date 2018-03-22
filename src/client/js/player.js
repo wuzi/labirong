@@ -151,7 +151,7 @@ Player.prototype = {
     },
 
     reset: function() {
-        this.x = 500;
+        this.x = 515;
         this.y = 16;
     }
 }

@@ -66,8 +66,8 @@ socket.on('updateMap', function (grid) {
     if (game == null) return;
 
     // These settings should come from the server
-    var SIZE_X = 63;
-    var SIZE_Y = 34;
+    var SIZE_X = 64;
+    var SIZE_Y = 64;
 
     for (var y = 0; y < SIZE_Y; y++) {
         for (var x = 0; x < SIZE_X; x++) {
