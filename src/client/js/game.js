@@ -10,7 +10,7 @@ function Game(width, height, socket) {
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     
     var t = this;
-    setInterval(function(){ t.update(); }, 20);
+    setInterval(function(){ t.update(); }, 30);
 }
 
 Game.prototype = {

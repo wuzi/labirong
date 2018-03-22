@@ -18,6 +18,7 @@ console.log(`Server started at http://localhost:${server.address().port}`);
 function Game(params) {
 	this.tiles = [];
 	this.players = [];
+	this.finished = false;
 }
 
 Game.prototype = {
@@ -31,7 +32,7 @@ Game.prototype = {
 }
 
 var game = new Game();
-game.tiles = map.generate();
+game.tiles = map.generate(config.SIZE_X, config.SIZE_Y);
 
 //-----------------------------------------------------------------------------
 
@@ -75,6 +76,12 @@ io.on('connection', function (client) {
 				
 				p.hframeOffset = player.hframeOffset;
 				p.vframeOffset = player.vframeOffset;
+
+				// check if the player has escaped
+				if (p.y > config.SIZE_Y * 16 && !game.finished) {
+					io.sockets.emit('finishMap', player);
+					game.finished = true;
+				}
 			}
 		});
 		client.broadcast.emit('sync', game.players);

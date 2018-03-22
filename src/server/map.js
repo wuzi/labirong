@@ -14,8 +14,11 @@ var grid = Array();
 
 var generating = true;
 
-var generate = function () {
+var generate = function (x, y) {
     grid = Array();
+    
+    SIZE_X = x;
+    SIZE_Y = y;
 
     for (var i = 0; i < SIZE_X * SIZE_Y; i++) {
         grid.push(SOLID);

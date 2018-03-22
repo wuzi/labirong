@@ -76,6 +76,10 @@ socket.on('updateMap', function (grid) {
     }
 });
 
+socket.on('finishMap', function (player) {
+    // announce the player that escaped
+});
+
 var joinGame = function (name, color) {
     game = new Game(400, 240, socket);
 
