@@ -33,19 +33,19 @@ Game.prototype = {
                     t.draw();
                 });
                 this.socket.emit('sync', { id: p.id, name: p.name, x: p.x, y: p.y, hframeIndex: p.hframeIndex, vframeIndex: p.vframeIndex, hframeOffset: p.hframeOffset, vframeOffset: p.vframeOffset  });
+
+                // draw message
+                if (this.finished) {
+                    this.context.textAlign = "center";
+                    this.context.font = "10px Sans-serif"
+                    this.context.strokeStyle = 'black';
+                    this.context.lineWidth = 2.5;
+                    this.context.strokeText(`${this.finisher} has escaped the labyrinth`, p.x, 120);
+                    this.context.fillStyle = 'white';
+                    this.context.fillText(`${this.finisher} has escaped the labyrinth`, p.x, 120);
+                }
             }
             p.update();
-
-            // draw message
-            if (this.finished) {
-                this.context.textAlign = "center";
-                this.context.font = "10px Sans-serif"
-                this.context.strokeStyle = 'black';
-                this.context.lineWidth = 2.5;
-                this.context.strokeText(`${this.finisher} has escaped the labyrinth`, p.x, 120);
-                this.context.fillStyle = 'white';
-                this.context.fillText(`${this.finisher} has escaped the labyrinth`, p.x, 120);
-            }
         });
     },
 
