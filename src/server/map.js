@@ -25,7 +25,7 @@ var generate = function () {
     do { update(); }
     while (generating);
 
-    //grid[parseInt(SIZE_X / 2)] = SOLID;
+    grid[parseInt(SIZE_X / 2)] = SOLID;
 
     return grid;
 }
