@@ -79,8 +79,14 @@ io.on('connection', function (client) {
 
 				// check if the player has escaped
 				if (p.y > config.SIZE_Y * 16 && !game.finished) {
-					io.sockets.emit('finishMap', player);
 					game.finished = true;
+					io.sockets.emit('finishMap', player);
+
+					setTimeout(function () {
+						game.finished = false;
+						game.tiles = map.generate(config.SIZE_X, config.SIZE_Y);
+						io.sockets.emit('updateMap', game.tiles);
+					}, 5000);
 				}
 			}
 		});

@@ -1,7 +1,9 @@
 // https://jsfiddle.net/dev928567/2b3rf7u7/60/
 
 var DICE = 0.5;
+var grid = Array();
 var attemptsLeft = 5;
+var generating = false;
 
 var SIZE_X = 64;
 var SIZE_Y = 64;
@@ -10,12 +12,10 @@ var SOLID = 1;
 var EMPTY = 0;
 var VOID = -1;
 
-var grid = Array();
-
-var generating = true;
-
 var generate = function (x, y) {
     grid = Array();
+    attemptsLeft = 5;
+    generating = true;
     
     SIZE_X = x;
     SIZE_Y = y;

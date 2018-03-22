@@ -64,6 +64,9 @@ socket.on('sync', function (players) {
 
 socket.on('updateMap', function (grid) {
     if (game == null) return;
+    game.tiles = [];
+    game.finished = "";
+    game.finished = false;
 
     // These settings should come from the server
     var SIZE_X = 64;
@@ -77,7 +80,14 @@ socket.on('updateMap', function (grid) {
 });
 
 socket.on('finishMap', function (player) {
-    // announce the player that escaped
+    game.finished = true;
+    game.finisher = player.name;
+
+    game.players.forEach(p => {
+        if (p.isLocal) {
+            p.reset();
+        }
+    });
 });
 
 var joinGame = function (name, color) {
