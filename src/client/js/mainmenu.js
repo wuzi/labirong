@@ -1,3 +1,7 @@
+var audio = new Audio('sound/opening.ogg');
+audio.loop = true;
+audio.play();
+
 document.getElementById('playBtn').addEventListener('click', function() {
     var name = document.getElementById('name').value;
     var color = document.getElementById('color').value;
@@ -10,5 +14,6 @@ document.getElementById('playBtn').addEventListener('click', function() {
         document.getElementById('error').innerHTML = "Please, <a href='#'>choose a color</a>.";
     else {
         joinGame(name, color);
+        audio.pause();
     }
 });

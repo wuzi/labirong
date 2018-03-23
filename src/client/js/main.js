@@ -97,4 +97,10 @@ var joinGame = function (name, color) {
     mainMenu.parentNode.removeChild(mainMenu);
 
     socket.emit('join', { name: name, color: color });
+
+    // thanks to t4ngr4m for the music
+    var audio = new Audio('sound/overworld.ogg');
+    audio.loop = true;
+    audio.volume = 0.5;
+    audio.play();
 }

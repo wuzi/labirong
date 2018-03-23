@@ -17,6 +17,6 @@ Tile.prototype = {
             default:
                 this.$context.drawImage(ASSET_MANAGER.getAsset('image/grass.png'), this.x, this.y, this.width, this.height);
                 break;
-        }        
+        }
     }
 }
