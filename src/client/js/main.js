@@ -57,6 +57,8 @@ socket.on('sync', function (players) {
 				
 				player.hframeOffset = serverPlayer.hframeOffset;
 				player.vframeOffset = serverPlayer.vframeOffset;
+                
+                player.lastMessage = serverPlayer.lastMessage;
             }
         });
     });

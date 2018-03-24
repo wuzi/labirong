@@ -27,6 +27,9 @@ function Player(id, name, x, y, color, width, height, isLocal, $context) {
         boost: false
     };
 
+    this.lastMessage = "";
+    this.lastMessageCount = 0;
+
     if (isLocal) this.setControls();
 }
 
@@ -53,13 +56,29 @@ Player.prototype = {
 
     draw: function () {
         this.$context.textAlign = "center";
-        this.$context.font = "10px Sans-serif"
+        this.$context.font = "9px Sans-serif"
         this.$context.strokeStyle = 'black';
         this.$context.lineWidth = 2.5;
         this.$context.strokeText(this.name, this.x + 6, this.y - 2);
         this.$context.fillStyle = 'white';
         this.$context.fillText(this.name, this.x + 6, this.y - 2);
         this.$context.drawImage(ASSET_MANAGER.getAsset(`image/character_${this.color}.png`), this.hframeIndex * this.hframeOffset, this.vframeIndex * this.vframeOffset, 37, 37, this.x, this.y, this.width, this.height);
+
+        if (this.lastMessage.length > 0) {
+            this.lastMessageCount--;
+            if (this.lastMessageCount == 0 && this.lastMessage.length > 0) {
+                this.lastMessage = "";
+            }
+            else {
+                this.$context.textAlign = "center";
+                this.$context.font = "11px Sans-serif"
+                this.$context.strokeStyle = 'black';
+                this.$context.lineWidth = 2.5;
+                this.$context.strokeText(this.lastMessage, this.x + 6, this.y - 10);
+                this.$context.fillStyle = 'white';
+                this.$context.fillText(this.lastMessage, this.x + 6, this.y - 10);
+            }
+        }
     },
 
     move: function () {
@@ -110,6 +129,11 @@ Player.prototype = {
                     break;
                 case 16:
                     t.moving.boost = true;
+                    break;
+                case 13:
+                    var message = prompt("Type the message");
+                    t.lastMessage = message;
+                    t.lastMessageCount = 200;
                     break;
             }
         }

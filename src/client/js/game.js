@@ -32,7 +32,7 @@ Game.prototype = {
                     }
                     t.draw();
                 });
-                this.socket.emit('sync', { id: p.id, name: p.name, x: p.x, y: p.y, hframeIndex: p.hframeIndex, vframeIndex: p.vframeIndex, hframeOffset: p.hframeOffset, vframeOffset: p.vframeOffset  });
+                this.socket.emit('sync', { id: p.id, name: p.name, x: p.x, y: p.y, hframeIndex: p.hframeIndex, vframeIndex: p.vframeIndex, hframeOffset: p.hframeOffset, vframeOffset: p.vframeOffset, lastMessage: p.lastMessage  });
 
                 // draw message
                 if (this.finished) {

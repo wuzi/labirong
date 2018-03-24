@@ -77,6 +77,8 @@ io.on('connection', function (client) {
 				p.hframeOffset = player.hframeOffset;
 				p.vframeOffset = player.vframeOffset;
 
+				p.lastMessage = player.lastMessage;
+
 				// check if the player has escaped
 				if (p.y > config.SIZE_Y * 16 && !game.finished) {
 					game.finished = true;
