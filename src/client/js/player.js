@@ -132,7 +132,7 @@ Player.prototype = {
                     break;
                 case 13:
                     var message = prompt("Type the message");
-                    t.lastMessage = message;
+                    t.lastMessage = message.substring(0, 28);
                     t.lastMessageCount = 200;
                     break;
             }
