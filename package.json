@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/server/index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Lucas Godoy (Wuzi)",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.16.2",
     "socket.io": "^2.0.4"
