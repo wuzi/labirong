@@ -27,7 +27,7 @@ Game.prototype = {
                 this.context.translate( camX, camY );
 
                 this.tiles.forEach(t => {
-                    if (p.collisionWithTile(t) && t.type != 0) {
+                    if (t.type != 0 && p.collisionWithTile(t)) {
                         p.reset();
                     }
                     t.draw();
