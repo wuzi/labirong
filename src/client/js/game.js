@@ -26,12 +26,15 @@ Game.prototype = {
                 var camY = (-p.y + this.canvas.height/2).clamp(-784, 240 - this.canvas.height);
                 this.context.translate( camX, camY );
 
+                var tileInCollision = undefined;
                 this.tiles.forEach(t => {
-                    if (t.type != 0 && p.collisionWithTile(t)) {
-                        p.reset();
+                    if (t.type != 0 && p.isCollidingWithTile(t)) {
+                        tileInCollision = t;
                     }
                     t.draw();
                 });
+                p.setCollisionWithTile(tileInCollision);
+
                 this.socket.emit('sync', { id: p.id, name: p.name, x: p.x, y: p.y, hframeIndex: p.hframeIndex, vframeIndex: p.vframeIndex, hframeOffset: p.hframeOffset, vframeOffset: p.vframeOffset, lastMessage: p.lastMessage  });
 
                 // draw message

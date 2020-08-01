@@ -30,6 +30,8 @@ function Player(id, name, x, y, color, width, height, isLocal, $context) {
     this.lastMessage = "";
     this.lastMessageCount = 0;
 
+    this.tileInCollision = undefined;
+
     if (isLocal) this.setControls();
 }
 
@@ -85,19 +87,19 @@ Player.prototype = {
         var speedX = 0;
         var speedY = 0;
             
-        if (this.moving.up) {
+        if (this.moving.up && (!this.tileInCollision || this.tileInCollision.y > this.y)) {
             speedY = -1;
             this.vframeIndex = 2;
         }
-        else if (this.moving.down) {
+        else if (this.moving.down && (!this.tileInCollision || this.tileInCollision.y < this.y)) {
             speedY = 1;
             this.vframeIndex = 0;
         }
-        if (this.moving.left) {
+        if (this.moving.left && (!this.tileInCollision || this.tileInCollision.x > this.x)) {
             speedX = -1;
             this.vframeIndex = 3;
         }
-        else if (this.moving.right) {
+        else if (this.moving.right && (!this.tileInCollision || this.tileInCollision.x < this.x)) {
             speedX = 1;
             this.vframeIndex = 1;
         }
@@ -164,7 +166,7 @@ Player.prototype = {
         }
     },
 
-    collisionWithTile: function(tile) {
+    isCollidingWithTile: function(tile) {
         if (this.x < tile.x + tile.width &&
             this.x + this.width - 2 > tile.x &&
             this.y < tile.y + tile.height - 10 &&
@@ -172,6 +174,10 @@ Player.prototype = {
             return true;
         }
         return false;
+    },
+
+    setCollisionWithTile: function(tile) {
+        this.tileInCollision = tile;
     },
 
     reset: function() {
