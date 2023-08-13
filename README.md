@@ -15,7 +15,7 @@ npm start
 
 # Live demo
 
-Check it [here](http://labirong.herokuapp.com/)!
+Check it [here](https://labirong.wuzi.dev)!
 
 # Thanks to
 [Curt](https://opengameart.org/content/rpg-character) - rpg character
